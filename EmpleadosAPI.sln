@@ -19,6 +19,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emp.Business", "Emp.Busines
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emp.Api", "Emp.Api\Emp.Api.csproj", "{E310E640-785E-441F-93AD-1EAD968305CE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 script BD", "5 script BD", "{DB28388F-E746-4F5B-B7DB-84FF1141A9CD}"
+	ProjectSection(SolutionItems) = preProject
+		instrucciones.txt = instrucciones.txt
+		..\..\..\OneDrive\Escritorio\script.sql = ..\..\..\OneDrive\Escritorio\script.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

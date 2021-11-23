@@ -1,0 +1,7 @@
+﻿1.-Crear Base de datos con el nombre [EmpleadosDB]
+2.-Ejecutar Script.sql(Contiene tablas y procedimientos)
+3.-Bajar aplicacion de api Empleados de github (https://github.com/edsonmg/EmpleadosAPI)
+4.-Cambiar usuario de base de datos en cadena de conexion appsettings.json del proyecto Emp.Api
+5.-Token ejecutar api/user para saber el token de seguridad y consumir los metodos del api.
+
+
