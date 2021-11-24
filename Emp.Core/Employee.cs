@@ -8,7 +8,7 @@ namespace Emp.Core
 {
    public class Employee
     {
-        public int idEmployee { get; set; }
+        public int Id { get; set; }
         public string Nombre { get; set; }
         public string APaterno { get; set; }
 

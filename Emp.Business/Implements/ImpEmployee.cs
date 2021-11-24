@@ -66,7 +66,7 @@ namespace Emp.Business.Implements
                 var dbparams = new DynamicParameters();
 
 
-                dbparams.Add("@idEmpleado", emp.idEmployee, DbType.Int64);
+                dbparams.Add("@idEmpleado", emp.Id, DbType.Int64);
                 
 
                 _result = await Task.FromResult(_dapper.ExcuteSp<Employee>("[sp_DelEmployee]", dbparams, commandType: CommandType.StoredProcedure));
@@ -116,7 +116,7 @@ namespace Emp.Business.Implements
 
                 var dbparams = new DynamicParameters();
 
-                dbparams.Add("@idEmpleado", emp.idEmployee, DbType.Int64);
+                dbparams.Add("@idEmpleado", emp.Id, DbType.Int64);
                 dbparams.Add("@Nombre", emp.Nombre, DbType.String);
                 dbparams.Add("@Apaterno", emp.APaterno, DbType.String);
                 dbparams.Add("@AMaterno", emp.AMaterno, DbType.String);
