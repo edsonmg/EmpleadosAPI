@@ -18,7 +18,7 @@ namespace Emp.Api.Controllers
         {
             _auth = auth;
         }
-        [HttpGet]
+        [HttpPost]
         public IActionResult Login()
         {
             return new JsonResult(_auth.Autorizar());

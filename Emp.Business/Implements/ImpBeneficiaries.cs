@@ -46,7 +46,7 @@ namespace Emp.Business.Implements
                         dbparams.Add("@Nacionalidad", ben.Nacionalidad, DbType.Int32);
                         dbparams.Add("@Porcentaje", ben.Porcentaje, DbType.Decimal);
 
-                        _result = await Task.FromResult(_dapper.ExcuteSp<Beneficiaries>("[sp_addbeneficiaries]", dbparams, commandType: CommandType.StoredProcedure));
+                        _result = await _dapper.ExcuteSp<Beneficiaries>("[sp_addbeneficiaries]", dbparams, commandType: CommandType.StoredProcedure);
 
 
                     }
@@ -81,7 +81,7 @@ namespace Emp.Business.Implements
 
             dbparams.Add("@idEmpleado", ben.idEmpleado, DbType.Int64);
 
-            _result = await Task.FromResult(_dapper.GetAll<Beneficiaries>("sp_BeneficariesList", dbparams, commandType: CommandType.StoredProcedure));
+            _result = await _dapper.GetAll<Beneficiaries>("sp_BeneficariesList", dbparams, commandType: CommandType.StoredProcedure);
 
             var porcentaje = _result.LsData.Sum(e => e.Porcentaje);
             var suma = porcentaje + ben.Porcentaje;

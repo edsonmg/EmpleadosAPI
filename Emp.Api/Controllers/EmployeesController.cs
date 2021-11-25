@@ -2,6 +2,7 @@
 using Emp.Core;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Emp.Api.Controllers
 {
@@ -17,28 +18,30 @@ namespace Emp.Api.Controllers
             _emp = employee;
         }
         [HttpPost]
-        public IActionResult AddEmployee([FromBody] Employee emp)
+        public async Task<IActionResult> AddEmployee([FromBody] Employee emp)
         {
-            return new JsonResult(_emp.addEmployee(emp));
+            var result = await _emp.addEmployee(emp);
+            return Ok(result);
         }
-
         [HttpGet]
-        public IActionResult LsEmployees()
+        public async Task<IActionResult> LsEmployees()
         {
-            
-            return new JsonResult(_emp.lsEmployees());
+                var result = await _emp.lsEmployees();
+            return  Ok(result);
         }
 
         [HttpPut]
-        public IActionResult updEmployee([FromBody] Employee emp)
-        {     
-            return new JsonResult(_emp.updEmployee(emp));
+        public async Task< IActionResult> updEmployee([FromBody] Employee emp)
+        {
+            var result = await _emp.updEmployee(emp);
+            return Ok(result);
         }
 
         [HttpDelete]
-        public IActionResult delEmployee([FromBody] Employee emp)
+        public async Task< IActionResult> delEmployee([FromBody] Employee emp)
         {
-            return new JsonResult(_emp.delEmployee(emp));
+            var result = await _emp.delEmployee(emp);
+            return Ok(result);
         }
     }
 

@@ -40,7 +40,7 @@ namespace Emp.Business.Implements
             dbparams.Add("@Telefono", emp.Telefono, DbType.String);
             dbparams.Add("@Nacionalidad", emp.Nacionalidad, DbType.Int32);
 
-            _result = await Task.FromResult(_dapper.ExcuteSp<Employee>("[sp_addEmployee]", dbparams, commandType: CommandType.StoredProcedure));
+            _result = await _dapper.ExcuteSp<Employee>("[sp_addEmployee]", dbparams, commandType: CommandType.StoredProcedure);
 
 
 
@@ -69,7 +69,7 @@ namespace Emp.Business.Implements
                 dbparams.Add("@idEmpleado", emp.Id, DbType.Int64);
                 
 
-                _result = await Task.FromResult(_dapper.ExcuteSp<Employee>("[sp_DelEmployee]", dbparams, commandType: CommandType.StoredProcedure));
+                _result = await _dapper.ExcuteSp<Employee>("[sp_DelEmployee]", dbparams, commandType: CommandType.StoredProcedure);
 
 
 
@@ -99,7 +99,7 @@ namespace Emp.Business.Implements
 
            
 
-            _result = await Task.FromResult(_dapper.GetAll<Employee>("sp_EmployeesList", dbparams, commandType: CommandType.StoredProcedure));
+            _result = await _dapper.GetAll<Employee>("sp_EmployeesList", dbparams, commandType: CommandType.StoredProcedure);
 
 
             return _result;
@@ -127,7 +127,7 @@ namespace Emp.Business.Implements
                 dbparams.Add("@Telefono", emp.Telefono, DbType.String);
                 dbparams.Add("@Nacionalidad", emp.Nacionalidad, DbType.Int32);
 
-                _result = await Task.FromResult(_dapper.ExcuteSp<Employee>("[sp_UpdEmployee]", dbparams, commandType: CommandType.StoredProcedure));
+                _result = await _dapper.ExcuteSp<Employee>("[sp_UpdEmployee]", dbparams, commandType: CommandType.StoredProcedure);
 
 
 

@@ -2,6 +2,7 @@
 using Emp.Core;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Emp.Api.Controllers
 {
@@ -18,9 +19,10 @@ namespace Emp.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult addbeneficiary([FromBody] Beneficiaries ben)
+        public async Task<IActionResult> addbeneficiary([FromBody] Beneficiaries ben)
         {
-            return new JsonResult(_ben.addBeneficiaries(ben));
+            var result = await _ben.addBeneficiaries(ben);
+            return  Ok(result);
         }
     }
 }

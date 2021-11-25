@@ -14,10 +14,10 @@ namespace Emp.BDContext.Services
     {
 
 
-        Result<T> Get<T>(string sp, DynamicParameters parms, CommandType commandType = CommandType.StoredProcedure);
-        Result<T> GetAll<T>(string sp, DynamicParameters parms, CommandType commandType = CommandType.StoredProcedure);
-        Result<T> ExcuteSp<T>(string sp, DynamicParameters parms, CommandType commandType = CommandType.StoredProcedure);
-        Result<T> ExcuteStore<T>(string sp, DynamicParameters parms, CommandType commandType = CommandType.StoredProcedure);
+        Task<Result<T>> Get<T>(string sp, DynamicParameters parms, CommandType commandType = CommandType.StoredProcedure);
+        Task<Result<T>> GetAll<T>(string sp, DynamicParameters parms, CommandType commandType = CommandType.StoredProcedure);
+        Task<Result<T>> ExcuteSp<T>(string sp, DynamicParameters parms, CommandType commandType = CommandType.StoredProcedure);
+        Task<Result<T>> ExcuteStore<T>(string sp, DynamicParameters parms, CommandType commandType = CommandType.StoredProcedure);
 
 
     }

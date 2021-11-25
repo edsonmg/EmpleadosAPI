@@ -5,6 +5,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Emp.BDContext.Services
 {
@@ -18,7 +19,7 @@ namespace Emp.BDContext.Services
             _config = configuration;
         }
 
-        public Result<T> ExcuteSp<T>(string sp, DynamicParameters parms, CommandType commandType = CommandType.StoredProcedure)
+        public async Task<Result<T>> ExcuteSp<T>(string sp, DynamicParameters parms, CommandType commandType = CommandType.StoredProcedure)
         {
             Result<T> result = new Result<T>();
             using (var conn = new SqlConnection(_config.GetConnectionString(Connectionstring)))
@@ -31,7 +32,7 @@ namespace Emp.BDContext.Services
                   
                     try
                     {
-                        result.Data = conn.Query<T>(sp, parms, commandType: commandType, transaction: sqlTransaction).FirstOrDefault();
+                        result.Data = await conn.QueryFirstOrDefaultAsync<T>(sp, parms, commandType: commandType, transaction: sqlTransaction);
                         sqlTransaction.Commit();
                         result.Exitoso = true;
                     }
@@ -57,7 +58,7 @@ namespace Emp.BDContext.Services
             return result;
         }
 
-        public Result<T> ExcuteStore<T>(string sp, DynamicParameters parms, CommandType commandType = CommandType.StoredProcedure)
+        public async Task<Result<T>> ExcuteStore<T>(string sp, DynamicParameters parms, CommandType commandType = CommandType.StoredProcedure)
         {
             Result<T> result = new Result<T>();
             using (var conn = new SqlConnection(_config.GetConnectionString(Connectionstring)))
@@ -69,7 +70,7 @@ namespace Emp.BDContext.Services
                    
                     try
                     {
-                        result.Data = conn.Query<T>(sp, parms, commandType: commandType).FirstOrDefault();
+                        result.Data = await conn.QueryFirstOrDefaultAsync<T>(sp, parms, commandType: commandType);
                         
                         result.Exitoso = true;
                     }
@@ -96,7 +97,7 @@ namespace Emp.BDContext.Services
         }
 
 
-        Result<T> IDapper.Get<T>(string sp, DynamicParameters parms, CommandType commandType)
+        async Task<Result<T>> IDapper.Get<T>(string sp, DynamicParameters parms, CommandType commandType)
         {
             Result<T> result = new Result<T>();
 
@@ -105,7 +106,7 @@ namespace Emp.BDContext.Services
 
                 using (var conn = new SqlConnection(this._config.GetConnectionString(Connectionstring)))
 
-                    result.Data = conn.QueryFirstAsync<T>(sp, parms, commandType: commandType).Result;
+                    result.Data = await conn.QueryFirstAsync<T>(sp, parms, commandType: commandType);
                     result.Exitoso = true;
 
                 }
@@ -120,7 +121,7 @@ namespace Emp.BDContext.Services
             return result;
         }
 
-        Result<T> IDapper.GetAll<T>(string sp, DynamicParameters parms, CommandType commandType)
+        async Task<Result<T>> IDapper.GetAll<T>(string sp, DynamicParameters parms, CommandType commandType)
         {
             Result<T> result = new Result<T>();
             using (var conn = new SqlConnection(_config.GetConnectionString(Connectionstring)))
@@ -128,7 +129,7 @@ namespace Emp.BDContext.Services
                 {
 
                   
-                    result.LsData = conn.QueryAsync<T>(sp, parms, commandType: commandType).Result.ToList();
+                    result.LsData = (System.Collections.Generic.List<T>) await conn.QueryAsync<T>(sp, parms, commandType: commandType);
                     result.Exitoso = true;
                 }
                 catch (Exception ex)
